@@ -1,82 +1,104 @@
-console.log('#1. Приклад домашнього завдання з JavaScript');
+console.log('#3. JavaScript homework example file');
 
-// #1 Змінні
-const myNum = 10;
-const myStr = 'some string';
-const myBool = true;
-const myArr = [1, 2, 3, 4, 5];
-const myObj = {
-    first: 'First Name',
-    last: 'Last Name'
+// #1
+const userObj = {
+  firstName: 'Іван',
+  lastName: 'Шевченко',
+  age: 30,
+  fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  },
 };
-console.log('myNum:', myNum);
-console.log('myStr:', myStr);
-console.log('myBool:', myBool);
-console.log('myArr:', myArr);
-console.log('myObj:', myObj);
+console.log(userObj);
 
-// #2 Форматування числа
-const decimal2 = myNum.toFixed(2);
-console.log('decimal2:', decimal2);
+// #2
+console.log(userObj.fullName()); // 'Іван Шевченко'
 
-// #3 Інкремент/декремент
-let i = 0;
-console.log('Початкове i:', i);
-console.log('Префіксний інкремент:', ++i);  
-console.log('Після префікса:', i);         
-console.log('Постфіксний інкремент:', i++); 
-console.log('Після постфікса:', i);        
-console.log('Префіксний декремент:', --i); 
-console.log('Постфіксний декремент:', i--); 
-console.log('Кінцеве i:', i); 
+// #3
+function defUpperStr(str) {
+  return (str || 'default text').toUpperCase();
+}
+console.log(defUpperStr('My text')); // 'MY TEXT'
+console.log(defUpperStr()); // 'DEFAULT TEXT'
 
-// #4 Оператори присвоєння
-let myTest = 20;
-console.log('Початкове myTest:', myTest);
-myTest += myNum;    
-console.log('myTest +=:', myTest);
-myTest -= 5;        
-console.log('myTest -=:', myTest);
-myTest *= 2;        
-console.log('myTest *=:', myTest);
-myTest /= 4;        
-console.log('myTest /=:', myTest);
-myTest %= 3;        
-console.log('myTest %=:', myTest);
+// #4
+function evenFn(n) {
+  const res = [];
+  for (let i = 1; i <= n; i++) {
+    if (i % 2 === 0) res.push(i);
+  }
+  return res;
+}
+console.log(evenFn(10));
+console.log(evenFn(15));
+console.log(evenFn(20));
 
-// #5 Math об'єкт
-const myPi = Math.PI;
-const myRound = Math.round(89.279);
-const myRandom = Math.floor(Math.random() * 11);
-const myPow = Math.pow(3, 5);
-console.log('myPi:', myPi);
-console.log('myRound:', myRound);
-console.log('myRandom (0-10):', myRandom);
-console.log('myPow (3^5):', myPow);
+// #5
+function weekFn(n) {
+  switch (n) {
+    case 1: return 'Понеділок';
+    case 2: return 'Вівторок';
+    case 3: return 'Середа';
+    case 4: return 'Четвер';
+    case 5: return 'Пʼятниця';
+    case 6: return 'Субота';
+    case 7: return 'Неділя';
+    default: return null;
+  }
+}
+console.log(weekFn(1));
+console.log(weekFn(3));
+console.log(weekFn(7));
+console.log(weekFn(9));
+console.log(weekFn(1.5));
+console.log(weekFn('2'));
 
-// #6 Об'єкт з рядком
-const strObj = {
-    str: "Мама мыла раму, рама мыла маму",
-    length: "Мама мыла раму, рама мыла маму".length
-};
-console.log('strObj:', strObj);
+// #6
+function ageClassification(n) {
+  return n < 0 || n > 122 ? null :
+         n <= 24 ? 'Дитинство' :
+         n <= 44 ? 'Молодість' :
+         n <= 65 ? 'Зрілість' :
+         n <= 75 ? 'Старість' :
+         n <= 90 ? 'Довголіття' :
+         'Рекорд';
+}
+console.log('     1 :', ageClassification(1));
+console.log('   122 :', ageClassification(122));
+console.log('122.01 :', ageClassification(122.01));
 
-// #7 Перевірка підрядка
-const isRamaPos = strObj.str.indexOf('рама');
-const isRama = strObj.str.includes('рама');
-console.log('isRamaPos:', isRamaPos);
-console.log('isRama:', isRama);
+// #7
+function oddFn(n) {
+  const res = [];
+  let i = 1;
+  while (i <= n) {
+    if (i % 2 !== 0) res.push(i);
+    i++;
+  }
+  return res;
+}
+console.log(oddFn(10));
+console.log(oddFn(15));
+console.log(oddFn(20));
 
-// #8 Заміна підрядка
-const strReplace = strObj.str
-    .replace('мыла', 'моет')
-    .replace('рама', 'Рама')
-    .replace('мыла', 'держит');
-console.log('strReplace:', strReplace);
+// #8
+function mainFunc(a, b, cb) {
+  return typeof cb === 'function' ? cb(a, b) : false;
+}
 
-// #9 Регістр
-const someStr = 'some STRING';
-const upperStr = someStr.toUpperCase();
-const lowerStr = someStr.toLowerCase();
-console.log('upperStr:', upperStr);
-console.log('lowerStr:', lowerStr);
+function cbRandom(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function cbPow(num, pow) {
+  return Math.pow(num, pow);
+}
+
+function cbAdd(a, b) {
+  return a + b;
+}
+
+console.log(mainFunc(2, 5, cbRandom)); // випадкове між 2 і 5
+console.log(mainFunc(2, 5, cbPow));    // 32
+console.log(mainFunc(2, 5, cbAdd));    // 7
+console.log(mainFunc(2, 5, 'not a func')); // false
